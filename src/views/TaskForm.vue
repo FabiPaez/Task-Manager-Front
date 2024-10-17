@@ -66,7 +66,7 @@ export default {
   methods: {
     async fetchStatusOptions() {
       try {
-        const response = await axios.get("https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/estados");
+        const response = await axios.get('http://localhost:3000/api/estados');
         this.status = response.data;
       } catch (error) {
         console.error("Error fetching status options:", error);
@@ -74,7 +74,7 @@ export default {
     },
     async fetchTask(id) {
       try {
-        const response = await axios.get(`https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/tareas/${id}`);
+        const response = await axios.get(`http://localhost:3000/api/tareas/${id}`);
         const tarea = response.data;
         this.task = {
           Id: tarea.Id,
@@ -103,10 +103,10 @@ export default {
 
         if (this.task.Id) {
           // Obtener los datos de la tarea actual para comparar el EstadoId antes de actualizar
-          const currentTask = await axios.get(`https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/tareas/${this.task.Id}`);
+          const currentTask = await axios.get(`http://localhost:3000/api/tareas/${this.task.Id}`);
 
           // Actualizar tarea existente
-          await axios.put(`https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/tareas/${this.task.Id}`, taskData);
+          await axios.put(`http://localhost:3000/api/tareas/${this.task.Id}`, taskData);
 
           // Solo registrar en el historial si el EstadoId ha cambiado
           if (currentTask.data.EstadoId !== this.task.estadoId) {
@@ -114,7 +114,7 @@ export default {
           }
         } else {
           // Crear nueva tarea
-          response = await axios.post("https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/tareas", taskData);
+          response = await axios.post('http://localhost:3000/api/tareas', taskData);
           const newTaskId = response.data.Id;
           this.registerHistory(newTaskId, "Tarea creada");
         }
@@ -137,7 +137,7 @@ export default {
       };
 
       try {
-        await axios.post(`https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/tareas/${taskId}/cambiar_estado`, historyData);
+        await axios.post(`http://localhost:3000/api/tareas/${taskId}/cambiar_estado`, historyData);
       } catch (error) {
         console.error("Error registrando historial:", error);
       }

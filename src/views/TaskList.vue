@@ -64,8 +64,8 @@ export default {
     async fetchTasks() {
       try {
         const [statusResponse, tasksResponse] = await Promise.all([
-          axios.get("https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/estados"),
-          axios.get("https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/tareas"),
+          axios.get('http://localhost:3000/api/estados'),
+          axios.get('http://localhost:3000/api/tareas'),
         ]);
 
         this.statusNames = statusResponse.data.map((estado) => estado.Nombre);
@@ -98,7 +98,7 @@ export default {
           `Are you sure you want to delete "${task.title}"?`
         );
         if (confirmDelete) {
-          await axios.delete(`https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/tareas/${task.id}`);
+          await axios.delete(`http://localhost:3000/api/tareas/${task.id}`);
           this.fetchTasks(); // Vuelve a cargar las tareas después de eliminar
         }
       } catch (error) {

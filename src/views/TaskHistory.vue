@@ -48,7 +48,7 @@ export default {
   methods: {
     fetchTaskHistory(id) {
       axios
-        .get(`https://task-manager-okmnmtbtd-fabian-paezs-projects.vercel.app/api/tareas/${id}/historial`)
+        .get(`http://localhost:3000/api/tareas/${id}/historial`)
         .then((response) => {
           this.history = response.data;
           console.log(this.history);

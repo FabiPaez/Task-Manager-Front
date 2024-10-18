@@ -137,7 +137,7 @@ export default {
       };
 
       try {
-        await axios.post(`http://localhost:3000/api/tareas/${taskId}/cambiar_estado`, historyData);
+        await axios.post(`http://localhost:3000/api/tareas/${taskId}/historial`, historyData);
       } catch (error) {
         console.error("Error registrando historial:", error);
       }

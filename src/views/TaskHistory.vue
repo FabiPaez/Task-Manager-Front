@@ -65,9 +65,9 @@ export default {
       },    
      getStatusColor(status) {
       switch (status) {
-        case '1': return 'navy';
-        case '2': return 'blue';
-        case '3': return 'green';
+        case '1': return 'cyan-darken-1';
+        case '2': return 'amber-lighten-1';
+        case '3': return 'green-accent-4';
         default: return 'grey';
       }
     },
